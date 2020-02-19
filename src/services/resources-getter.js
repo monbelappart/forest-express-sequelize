@@ -110,8 +110,8 @@ function ResourcesGetter(model, options, params) {
   async function getRecords() {
     fieldNamesRequested = fieldNamesRequested || await getFieldNamesRequested();
 
-    const scope = segmentScope ? model.scope(segmentScope) : model.unscoped();
-    const include = queryBuilder.getIncludes(model, fieldNamesRequested);
+    const scope = segmentScope ? model.scope(segmentScope) : model.scope('defaultScope');
+    const include = queryBuilder.getIncludes(scope, fieldNamesRequested);
 
     return getWhere()
       .then((where) => {
@@ -156,8 +156,8 @@ function ResourcesGetter(model, options, params) {
   async function countRecords() {
     fieldNamesRequested = fieldNamesRequested || await getFieldNamesRequested();
 
-    const scope = segmentScope ? model.scope(segmentScope) : model.unscoped();
-    const include = queryBuilder.getIncludes(model, fieldNamesRequested);
+    const scope = segmentScope ? model.scope(segmentScope) : model.scope('defaultScope');
+    const include = queryBuilder.getIncludes(scope, fieldNamesRequested);
 
     return getWhere()
       .then((where) => {
